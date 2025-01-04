@@ -15,6 +15,7 @@ chrome_options.add_argument("--disable-gpu")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 def generatorCrawl(end_page: int):
+    all_count = 0
     allTrHtml = ""
 
     for i in range(end_page, 0, -1):
@@ -37,14 +38,17 @@ def generatorCrawl(end_page: int):
                 tr = tb.find_all("tr", { "class": "ub-content us-post" })
                 trhtml = joiner(tr)
                 allTrHtml += trhtml + "\n"
+                all_count += len(tr) - 6
 
         except Exception as e:
             print(str(e))
             
     with open("../dist/marc.html", "w", encoding="utf-8") as f:
         f.write(allTrHtml)
-        f.close()
-    
+
+    with open("../dist/chr/gall_count_num.txt", "w", encoding="utf-8") as f:
+        f.write(str(all_count))
+
     driver.quit()
 
 generatorCrawl(8)

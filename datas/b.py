@@ -21,7 +21,6 @@ acont = mainSoup.find_all("a", { "view-msg": "" })
 acont_text = mainSoup.find_all("a", { "view-msg": "" })
 acontext_list = []
 
-acontHtml = joiner(acont)
 for act in acont_text:
     texts: str = act.get_text()
     if texts.strip() == "":
@@ -48,17 +47,11 @@ for hl in href_list:
         newhl = f"https://gall.dcinside.com{hl}"
         temp.append(newhl)
 
-with open("../dist/xitro.html", "w", encoding="utf-8") as f:
-    f.write(acontHtml)
-    f.close()
-
 temphtml = joiner(temp)
 with open("../dist/href.txt", "w", encoding="utf-8") as f:
     f.write(temphtml)
-    f.close()
 
 with open("../dist/chr/index.txt", "w", encoding="utf-8") as f:
     f.write(actList)
-    f.close()
 
 driver.quit()
