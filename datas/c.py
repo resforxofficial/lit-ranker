@@ -45,6 +45,7 @@ for url in urls:
     }
     allof_list.append(allof_data)
     allof_list = sorted(allof_list, key=lambda x: datetime.strptime(x["date"], "%Y-%m-%d %H:%M:%S"))
+    trimmed_allof_list = allof_list[6:]
 
     with open("../dist/chr/allof.json", "w", encoding="utf-8") as f:
-        json.dump(allof_list, f, indent=4, ensure_ascii=False)
+        json.dump(trimmed_allof_list, f, indent=4, ensure_ascii=False)
