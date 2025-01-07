@@ -28,4 +28,7 @@ for url in urls:
 
     url_html = driver.page_source
     urlNew_html = BeautifulSoup(url_html, "html5lib")
-    print(urlNew_html)
+    mainComment_div = urlNew_html.select_one("div.comment_wrap.show")
+
+    with open("../dist/temp/orchmiest.html", "w", encoding="utf-8") as f:
+        f.write(str(mainComment_div))
