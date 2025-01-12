@@ -23,12 +23,12 @@ with open("../dist/href.txt", "r", encoding="utf-8") as f:
 for url in urls:
     driver.get(url)
     WebDriverWait(driver, 13).until(
-        EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[2]/div[3]/main/section/article[2]/div[3]'))
+        EC.presence_of_all_elements_located((By.CSS_SELECTOR, '#comment_wrap_455630 > div.comment_box'))
     )
 
     url_html = driver.page_source
     urlNew_html = BeautifulSoup(url_html, "html5lib")
-    mainComment_div = urlNew_html.select_one("div.comment_wrap.show")
+    mainComment_div = urlNew_html.select_one("div#comment_wrap_455630 > ")
 
     with open("../dist/temp/orchmiest.html", "w", encoding="utf-8") as f:
         f.write(str(mainComment_div))
